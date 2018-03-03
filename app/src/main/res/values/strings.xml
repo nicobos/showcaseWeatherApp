@@ -1,0 +1,5 @@
+<resources>
+    <string name="open_weather_service_url">http://api.openweathermap.org/data/2.5/</string>
+    <string name="app_name">Weather</string>
+    <string name="weather_image_description">Image showing weather conditions</string>
+</resources>
