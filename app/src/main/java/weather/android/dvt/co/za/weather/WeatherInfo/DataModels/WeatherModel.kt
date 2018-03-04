@@ -36,6 +36,6 @@ class WeatherModel {
     /* Get country name from country code */
     fun getCountryNameFromCode(countryCode: String): String{
         val loc = Locale("",countryCode)
-        return loc.getDisplayCountry()
+        return loc.displayCountry
     }
 }

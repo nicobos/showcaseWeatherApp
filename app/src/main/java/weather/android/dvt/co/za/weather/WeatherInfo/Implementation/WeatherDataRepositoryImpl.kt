@@ -21,6 +21,7 @@ import javax.inject.Inject
 
 /**
  * Created by Wolf on 03/03/2018.
+ * Gets weather data from weather sources
  */
 class WeatherDataRepositoryImpl @Inject constructor(
         private val weatherService: IRetrofitWeatherService,
@@ -37,7 +38,7 @@ class WeatherDataRepositoryImpl @Inject constructor(
 
         val returnData = WeatherModel()
 
-        val weatherObservable = weatherService?.getWeatherInfoRetrofit(location!!.latitude.toString(),location.longitude.toString(),mContext.getString(R.string.open_weather_api_key))!!
+        val weatherObservable = weatherService.getWeatherInfoRetrofit(location!!.latitude.toString(), location.longitude.toString(), mContext.getString(R.string.open_weather_api_key))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
 
@@ -56,10 +57,10 @@ class WeatherDataRepositoryImpl @Inject constructor(
 
                     /* Construct return message to presenter */
                     returnData.setMaxTempCelcius(weatherData?.main?.temp_max!!)
-                    returnData.setminTempCelcius(weatherData?.main?.temp_min!!)
-                    returnData.setLocationAdres(weatherData?.name!!,weatherData?.sys?.country!!)
-                    returnData.imageResourceId = WeatherRanges.getImageResource(weatherData?.weather?.getOrNull(0)?.id)
-                    returnData.weatherDescription = weatherData?.weather?.getOrNull(0)?.main
+                    returnData.setminTempCelcius(weatherData.main?.temp_min!!)
+                    returnData.setLocationAdres(weatherData.name!!, weatherData.sys?.country!!)
+                    returnData.imageResourceId = WeatherRanges.getImageResource(weatherData.weather?.getOrNull(0)?.id)
+                    returnData.weatherDescription = weatherData.weather?.getOrNull(0)?.main
                     iWeatherDataCallback.onSuccess(returnData)
                 }
                 /* Clear all threads that are active. If any */

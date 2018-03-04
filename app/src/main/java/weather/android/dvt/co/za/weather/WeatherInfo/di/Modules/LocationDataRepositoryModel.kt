@@ -11,6 +11,7 @@ import weather.android.dvt.co.za.weather.WeatherInfo.di.Scope.ActivityContext
 
 /**
  * Created by Wolf on 04/03/2018.
+ * Provides the location service
  */
 @Module(includes = [MainActivityContextModule::class])
 class LocationDataRepositoryModel {
@@ -22,7 +23,7 @@ class LocationDataRepositoryModel {
 
     @Provides
     fun fusedLocation(@ActivityContext context: Context): FusedLocationProviderClient{
-        return LocationServices.getFusedLocationProviderClient(context);
+        return LocationServices.getFusedLocationProviderClient(context)
     }
 
 }

@@ -10,21 +10,22 @@ import javax.inject.Inject
 
 /**
  * Created by Wolf on 03/03/2018.
+ * Gets the location from the device
  */
 class LocationDataDataRepositoryImpl @Inject constructor(
         @ActivityContext private val activityContext: Context,
         private val fusedLocationProviderClient: FusedLocationProviderClient) : LocationDataRepository {
 
-    override fun getLocation(locationDataCallback: LocationDataRepository.ILocationCallback) {
+    override fun getLocation(locationCallback: LocationDataRepository.ILocationCallback) {
         @Suppress
-        fusedLocationProviderClient.getLastLocation()!!
+        fusedLocationProviderClient.lastLocation!!
                 .addOnSuccessListener(activityContext as Activity,{ location ->
                     // Got last known location. In some rare situations this can be null.
                     if (location != null) {
-                        locationDataCallback.onSuccess(location)
+                        locationCallback.onSuccess(location)
                     }
                     else {
-                        locationDataCallback.onFailure("Error: Location is null.")
+                        locationCallback.onFailure("Error: Location is null.")
                     }
                 })
     }

@@ -5,6 +5,8 @@ import timber.log.Timber
 
 /**
  * Created by Wolf on 03/03/2018.
+ *
+ * Application to display weather info
  */
 class WeatherApplication : Application() {
 
@@ -12,7 +14,7 @@ class WeatherApplication : Application() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree());
+            Timber.plant(Timber.DebugTree())
         } else {
             /* todo Implement production crash report tree */
         }

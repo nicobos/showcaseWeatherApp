@@ -5,11 +5,12 @@ import weather.android.dvt.co.za.weather.WeatherInfo.DataModels.WeatherModel
 
 /**
  * Created by Wolf on 03/03/2018.
+ * Definition of repository that provides weatherData object
  */
 interface WeatherDataRepository {
     fun getWeatherInfoRetrofit(location: Location?,iWeatherDataCallback: IWeatherDataCallback)
     interface IWeatherDataCallback{
-        fun onSuccess(weatherModel: WeatherModel);
-        fun onFailure(error: String);
+        fun onSuccess(weatherModel: WeatherModel)
+        fun onFailure(error: String)
     }
 }
