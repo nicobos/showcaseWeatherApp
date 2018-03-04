@@ -1,12 +1,9 @@
-package weather.android.dvt.co.za.weather.WeatherInfo.Inject.Modules
+package weather.android.dvt.co.za.weather.WeatherInfo.di.Modules
 
 import dagger.Provides
-import android.app.Activity
 import android.content.Context
 import dagger.Module
-import weather.android.dvt.co.za.weather.MainActivity
-import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope.ActivityContext
-
+import weather.android.dvt.co.za.weather.WeatherInfo.di.Scope.ActivityContext
 
 /**
  * Created by Wolf on 03/03/2018.

@@ -12,6 +12,7 @@ class WeatherModel {
     var minTemp: String? = null
     var maxTemp: String? = null
     var imageResourceId: Int? = null
+    var weatherDescription: String? = null
 
     /* Set the minimum temperature in Celsius (Convert from fahrenheit) */
     fun setminTempCelcius(valFar: Double){

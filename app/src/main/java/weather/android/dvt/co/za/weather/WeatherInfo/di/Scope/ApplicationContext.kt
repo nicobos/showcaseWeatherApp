@@ -1,4 +1,4 @@
-package weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope
+package weather.android.dvt.co.za.weather.WeatherInfo.di.Scope
 
 import javax.inject.Qualifier
 

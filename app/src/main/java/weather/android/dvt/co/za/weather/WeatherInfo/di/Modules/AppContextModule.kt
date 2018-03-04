@@ -1,10 +1,10 @@
-package weather.android.dvt.co.za.weather.WeatherInfo.Inject.Modules
+package weather.android.dvt.co.za.weather.WeatherInfo.di.Modules
 
 import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope.ApplicationContext
+import weather.android.dvt.co.za.weather.WeatherInfo.di.Scope.ApplicationContext
 
 /**
  * Created by Wolf on 03/03/2018.
