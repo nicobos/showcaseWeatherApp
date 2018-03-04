@@ -1,4 +1,4 @@
-package weather.android.dvt.co.za.weather.WeatherInfo.Inject
+package weather.android.dvt.co.za.weather.WeatherInfo.Inject.Modules
 
 import dagger.Module
 import dagger.Provides
@@ -7,7 +7,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-
+import weather.android.dvt.co.za.weather.WeatherInfo.IRetrofitWeatherService
+import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope.WeatherApplicationScope
 
 
 /**
@@ -15,9 +16,15 @@ import com.google.gson.GsonBuilder
  */
 @Module
 class WeatherServiceModule{
+    val base_url = "http://api.openweathermap.org/data/2.5/"
 
     @Provides
-    fun retrofit(base_url: String,gsonConverterFactory: GsonConverterFactory, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory) : Retrofit{
+    fun IRetroFitWeatherService(retrofit: Retrofit): IRetrofitWeatherService{
+        return retrofit.create(IRetrofitWeatherService::class.java)
+    }
+
+    @Provides
+    fun retrofit(gsonConverterFactory: GsonConverterFactory, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory) : Retrofit{
         return Retrofit.Builder()
                 .baseUrl(base_url)
                 .addCallAdapterFactory(rxJava2CallAdapterFactory)

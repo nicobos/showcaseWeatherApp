@@ -4,41 +4,33 @@ import android.app.Activity
 import android.content.Context
 import android.location.Location
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
-import weather.android.dvt.co.za.weather.WeatherInfo.ILocationService
+import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope.ActivityContext
+import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Scope.MainActivityScope
+import weather.android.dvt.co.za.weather.WeatherInfo.Repositories.LocationRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
 /**
  * Created by Wolf on 03/03/2018.
  */
-class LocationService(context: Context?, locationCallback: LocationCallback) : ILocationService {
+class LocationService @Inject constructor(
+        @ActivityContext private val activityContext: Context,
+        private val fusedLocationProviderClient: FusedLocationProviderClient) : LocationRepository {
 
-    var mFusedLocationClient: FusedLocationProviderClient? = null
-    var mContext: Context?
-    var mLocationCallback: LocationService.LocationCallback
-
-    interface LocationCallback {
-        fun locationReceived(location: Location)
-    }
-
-    init {
-        mContext = context
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext!!);
-        mLocationCallback = locationCallback
-    }
-
-    /* Get current location from android location provider */
-    override fun getCurrentLocation() {
-        var mLocation:Location? = null
-
+    override fun getLocation(locationCallback: LocationRepository.ILocationCallback) {
         @Suppress
-        mFusedLocationClient?.getLastLocation()!!
-                .addOnSuccessListener(mContext as Activity, OnSuccessListener<Location> { location ->
+        fusedLocationProviderClient?.getLastLocation()!!
+                .addOnSuccessListener(activityContext as Activity,{ location ->
                     // Got last known location. In some rare situations this can be null.
                     if (location != null) {
-                        mLocationCallback.locationReceived(location)
+                        locationCallback.onSuccess(location)
+                    }
+                    else {
+                        locationCallback.onFailure("")
                     }
                 })
     }
+
 }

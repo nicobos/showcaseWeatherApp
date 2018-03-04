@@ -1,6 +1,9 @@
 package weather.android.dvt.co.za.weather.WeatherInfo.Implementation
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -13,11 +16,17 @@ import weather.android.dvt.co.za.weather.R
 import weather.android.dvt.co.za.weather.WeatherInfo.DataModels.WeatherModel
 import weather.android.dvt.co.za.weather.WeatherInfo.IWeatherView
 import com.squareup.picasso.Callback
+import weather.android.dvt.co.za.weather.WeatherInfo.IRetrofitWeatherService
+import weather.android.dvt.co.za.weather.WeatherInfo.Inject.Components.WeatherServiceComponent
+import weather.android.dvt.co.za.weather.WeatherInfo.Inject.component
 
 /**
  * Created by Wolf on 03/03/2018.
  */
 class WeatherView : Fragment(),IWeatherView {
+
+    //lateinit var iWeatherService: IRetrofitWeatherService
+   // lateinit var appContext: Context
 
     lateinit var weatherPresenter: WeatherPresenter
 
@@ -30,7 +39,12 @@ class WeatherView : Fragment(),IWeatherView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        weatherPresenter = WeatherPresenter(activity)
+        //iWeatherService = component.getWeatherService()
+        //appContext = component.getAppContext()
+
+
+        weatherPresenter = component.getWeatherPresenter()
+        //weatherPresenter = ViewModelProviders.of(this).get(weatherPresenter::class.java)
 
         /* Tell weatherPresenter to go and get the weather info */
         weatherPresenter.updateWeatherInfo()
