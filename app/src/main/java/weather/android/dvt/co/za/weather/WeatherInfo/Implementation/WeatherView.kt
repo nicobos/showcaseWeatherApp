@@ -31,6 +31,9 @@ class WeatherView : Fragment(),IWeatherView {
     @Inject
     lateinit var picasso: Picasso
 
+    @Inject
+    lateinit var todaysDate: String
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_weather,container,false)
 
@@ -48,6 +51,7 @@ class WeatherView : Fragment(),IWeatherView {
 
         /* Tell weatherPresenter to go and get the weather info */
         weatherPresenter.updateWeatherInfo()
+        tvCurrentDay.text = todaysDate
 
         weatherPresenter.weatherInfo.observe(this, Observer<WeatherModel>{
             Timber.i("Data received from weatherPresenter")

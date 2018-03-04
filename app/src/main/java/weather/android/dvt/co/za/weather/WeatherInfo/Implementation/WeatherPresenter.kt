@@ -44,5 +44,4 @@ class WeatherPresenter @Inject constructor(private val weatherDataRepositoryImpl
           })
      }
 
-
 }
