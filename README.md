@@ -1,6 +1,6 @@
 # Showcase Weather App (Android)
 
-Weather app retrieves weather information from openweather.org and displays it in fragment.
+Weather app retrieves weather information from openweathermap.org and displays it in fragment.
 
 Libraries used:
   * Dagger
